@@ -5,7 +5,7 @@ import axios from "axios";
 import Input_Button from "./Input_Button";
 const List_Cards = styled.div`
   width: 100vw;
-  margin-top: 30px;
+  padding-top: 120px;
   max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
@@ -52,15 +52,17 @@ const List_Cards = styled.div`
       }
       @media screen and (min-width: 600px) {
         position: inherit;
+
         width: 320px;
         height: 410px;
-        h1 {
-          font-size: 80px;
-          height: 120px;
+        h1{
+          font-size: 120px;
+          height: auto;
         }
       }
     }
   }
+
   @media screen and (min-width: 600px) {
     .ListaDeConsultas {
       width: fit-content;
@@ -73,7 +75,7 @@ const List_Cards = styled.div`
 `;
 
 function List(props) {
-  // const [Consultas, SetConsultas] = useState([]);
+
   const [Database, setDatabase] = useState([]);
   const [showInputButton, setShowInputButton] = useState(false);
   const [validation, setValidation] = useState("");
@@ -86,12 +88,14 @@ function List(props) {
         if (response.data.Value.length != 0) {
           setDatabase([...Database, response.data.Value]);
           setShowInputButton(false);
+          setValidation("")
         } else {
           setValidation("Codigo invalido, tente novamente");
         }
       })
       .catch((error) => {
         console.log(error);
+        setValidation(error.message);
       });
   }
   function removeConsulta(id) {
@@ -100,7 +104,6 @@ function List(props) {
     setDatabase(array);
   }
 
-  console.log(Database);
   return (
     <List_Cards>
       <div className="ListaDeConsultas">
