@@ -4,22 +4,48 @@ const Card_container = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
-  padding: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
   @media screen and (min-width: 600px) {
-    width: 400px;
+    width: 320px;
+    height: 410px;
   }
   .Container_Info {
     width: 100%;
-    height: max-content;
+    height: 410px;
     padding: 10px;
-    /* From https://css.glass */
-    background: white;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7.7px);
-    -webkit-backdrop-filter: blur(7.7px);
-    border: 1px solid rgba(183, 158, 158, 1);
+:hover{
+  transition: 1s;
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.514);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(12.1px);
+-webkit-backdrop-filter: blur(12.1px);
 
+}
+    .close-Button {
+      height: 30px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5px;
+      width: 100px;
+      border-radius: 5px;
+
+      background-color: #03314b;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      :hover {
+        color: #03314b;
+        background-color: white;
+        border: 3px solid #03314b;
+      }
+    }
     .InfoStock {
       width: 100%;
       display: flex;
@@ -49,7 +75,8 @@ const Card_container = styled.div`
         position: absolute;
         right: 0;
         top: 50%;
-        color: #ffffff16;
+        color: #ffffff1d;
+        z-index: -1;
         transform: translateY(-50%);
         -webkit-user-select: none;
         -moz-user-select: none;
@@ -66,18 +93,21 @@ const Card_container = styled.div`
           font-weight: 400;
         }
         .porcentagem {
-          font-size: 40px;
-          color: ${(props) => (props.colorNetChg ? "green" : "red")};
+          font-size: 25px;
+          font-weight: 700;
+          color: ${(props) => (props.colorNetChg ? "#48ff00" : "red")};
         }
         .arrow-up {
           border-left: 10px solid transparent;
           border-right: 10px solid transparent;
           position: absolute;
           top: 50%;
-          transform: translateY(40%);
-          right: 125px;
+          transform: translateY(30%);
+          transform: ${(props) =>
+            props.colorNetChg ? "0" : "rotateZ(180deg)"};
+          right: 90px;
           border-bottom: 15px solid
-            ${(props) => (props.colorNetChg ? "green" : "red")};
+            ${(props) => (props.colorNetChg ? "#48ff00" : "red")};
           margin-right: 10px;
         }
       }
@@ -85,15 +115,37 @@ const Card_container = styled.div`
     .Tables_Bid_Ask {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
+      margin-top: 15px;
+      tr:first-child td:first-child {
+        border-top-left-radius: 10px;
+      }
+      tr:first-child td:last-child {
+        border-top-right-radius: 10px;
+      }
+
+      tr:last-child td:first-child {
+        border-bottom-left-radius: 10px;
+      }
+      tr:last-child td:last-child {
+        border-bottom-right-radius: 10px;
+      }
       .tableLite {
-        padding: 10px;
+        padding: 5px;
         border-spacing: 0px 3px;
-        width: 48%;
+        width: 49%;
+        height: 190px;
         text-align: center;
         background-color: #03314b;
         border-radius: 16px;
-        color: #1dcc98;
+
+        thead {
+          tr {
+            td {
+              color: #1dcc98;
+              font-weight: 700;
+            }
+          }
+        }
         tr {
           /* From https://css.glass */
           background: rgba(255, 255, 255, 0.23);
@@ -103,7 +155,9 @@ const Card_container = styled.div`
           -webkit-backdrop-filter: blur(6.8px);
           border: 1px solid rgba(255, 255, 255, 0.76);
           td {
+            color: white;
             padding: 2px;
+            font-size: 12px;
           }
         }
       }
@@ -112,8 +166,6 @@ const Card_container = styled.div`
 `;
 
 function Card(props) {
-  console.log(props);
-
   const DatabaseAplied = props.Database.length != 0;
   const Properties = DatabaseAplied ? props.Database[0].Properties : [];
   const Book = DatabaseAplied ? props.Database[0].Book : [];
@@ -207,6 +259,12 @@ function Card(props) {
             </tbody>
           </table>
         </div>
+        <button
+          onClick={() => props.removeConsulta(props.index)}
+          className="close-Button"
+        >
+          Fechar
+        </button>
       </div>
     </Card_container>
   );
