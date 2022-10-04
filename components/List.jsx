@@ -94,7 +94,6 @@ function List(props) {
         }
       })
       .catch((error) => {
-        console.log(error);
         setValidation(error.message);
       });
   }
