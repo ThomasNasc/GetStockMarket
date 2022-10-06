@@ -3,6 +3,7 @@ import Card from "./Card";
 import styled from "styled-components";
 import axios from "axios";
 import Input_Button from "./Input_Button";
+
 const List_Cards = styled.div`
   width: 100vw;
   padding-top: 120px;
@@ -55,7 +56,7 @@ const List_Cards = styled.div`
 
         width: 320px;
         height: 410px;
-        h1{
+        h1 {
           font-size: 120px;
           height: auto;
         }
@@ -75,7 +76,6 @@ const List_Cards = styled.div`
 `;
 
 function List(props) {
-
   const [Database, setDatabase] = useState([]);
   const [showInputButton, setShowInputButton] = useState(false);
   const [validation, setValidation] = useState("");
@@ -88,7 +88,7 @@ function List(props) {
         if (response.data.Value.length != 0) {
           setDatabase([...Database, response.data.Value]);
           setShowInputButton(false);
-          setValidation("")
+          setValidation("");
         } else {
           setValidation("Codigo invalido, tente novamente");
         }
@@ -105,6 +105,7 @@ function List(props) {
 
   return (
     <List_Cards>
+
       <div className="ListaDeConsultas">
         {Database.map((Item, index) => {
           return (
@@ -121,7 +122,6 @@ function List(props) {
           <h1>+</h1>
         </div>
       </div>
-
       {showInputButton ? (
         <Input_Button
           setValidation={setValidation}
