@@ -6,6 +6,7 @@ const ContainerAddConsulta = styled.div`
   height: 100%;
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 3;
   display: flex;
   justify-content: center;

@@ -11,14 +11,21 @@ const List_Cards = styled.div`
   margin-left: auto;
   margin-right: auto;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: row;
   padding-bottom: 120px;
+
   .ListaDeConsultas {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
+    @media screen and (min-width: 630px) {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 320px));
+    }
     .cover {
       position: fixed;
       bottom: 25px;
@@ -27,20 +34,20 @@ const List_Cards = styled.div`
       height: 80px;
       display: flex;
       justify-content: center;
-      padding: 5px;
+      margin: 10px;
+
       align-items: center;
-      h1 {
-        font-size: 50px;
-        height: 80px;
-      }
       background: rgba(228, 228, 228, 0.41);
       border-radius: 16px;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
       backdrop-filter: blur(7.4px);
       -webkit-backdrop-filter: blur(7.4px);
       border: 1px solid rgba(68, 68, 68, 0.3);
-
       border-radius: 16px;
+      h1 {
+        font-size: 50px;
+        height: 80px;
+      }
       cursor: pointer;
       :hover {
         background: rgba(90, 90, 90, 0.41);
@@ -53,7 +60,6 @@ const List_Cards = styled.div`
       }
       @media screen and (min-width: 600px) {
         position: inherit;
-
         width: 320px;
         height: 410px;
         h1 {
@@ -61,16 +67,6 @@ const List_Cards = styled.div`
           height: auto;
         }
       }
-    }
-  }
-
-  @media screen and (min-width: 600px) {
-    .ListaDeConsultas {
-      width: fit-content;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
     }
   }
 `;
@@ -105,7 +101,6 @@ function List(props) {
 
   return (
     <List_Cards>
-
       <div className="ListaDeConsultas">
         {Database.map((Item, index) => {
           return (

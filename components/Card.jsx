@@ -4,11 +4,11 @@ const Card_container = styled.div`
   width: 100vw;
   display: flex;
   justify-content: center;
-  padding: 5px;
-  margin-bottom: 10px;
+
+  padding: 10px;
   @media screen and (min-width: 600px) {
     width: 320px;
-    height: 410px;
+    height: 420px;
   }
   .Container_Info {
     width: 100%;
