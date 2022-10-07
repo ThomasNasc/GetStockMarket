@@ -18,16 +18,15 @@ const Card_container = styled.div`
     flex-direction: column;
     background: #ffffff;
     border-radius: 16px;
-:hover{
-  transition: 1s;
-  /* From https://css.glass */
-background: rgba(255, 255, 255, 0.514);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(12.1px);
--webkit-backdrop-filter: blur(12.1px);
-
-}
+    :hover {
+      transition: 1s;
+      /* From https://css.glass */
+      background: rgba(255, 255, 255, 0.514);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(12.1px);
+      -webkit-backdrop-filter: blur(12.1px);
+    }
     .close-Button {
       height: 30px;
       margin-left: auto;
@@ -71,7 +70,7 @@ backdrop-filter: blur(12.1px);
       }
 
       .backgroundSymbol {
-        font-size: 90px;
+        font-size: 80px;
         position: absolute;
         right: 0;
         top: 50%;
@@ -184,12 +183,7 @@ function Card(props) {
           <div>
             <h1 className="textInfo">
               R${"  "}
-              {Properties.Price.toLocaleString("pt-BR", {
-                currency: "BRL",
-                style: "currency",
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })}
+              {Properties.Price}
             </h1>
             <h1 className="textInfo porcentagem">
               <span className="arrow-up"></span> {Properties.NetChgPrevDay}%
@@ -218,14 +212,7 @@ function Card(props) {
                   <tr key={index}>
                     <td>{item.Broker}</td>
                     <td>{item.Quantity}</td>
-                    <td>
-                      {item.Price.toLocaleString("pt-BR", {
-                        currency: "BRL",
-                        style: "currency",
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })}
-                    </td>
+                    <td>R$ {item.Price}</td>
                   </tr>
                 );
               })}
