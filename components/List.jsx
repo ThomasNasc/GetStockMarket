@@ -6,6 +6,7 @@ import Input_Button from "./Input_Button";
 
 const List_Cards = styled.div`
   width: 100vw;
+ 
   padding-top: 120px;
   max-width: 1600px;
   margin-left: auto;
@@ -18,11 +19,11 @@ const List_Cards = styled.div`
   .ListaDeConsultas {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
 
     @media screen and (min-width: 630px) {
       width: 100%;
+      /* height: 100vh; */
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 320px));
     }
@@ -60,7 +61,7 @@ const List_Cards = styled.div`
       }
       @media screen and (min-width: 600px) {
         position: inherit;
-        width: 320px;
+        width: 300px;
         height: 410px;
         h1 {
           font-size: 120px;
@@ -75,6 +76,11 @@ function List(props) {
   const [Database, setDatabase] = useState([]);
   const [showInputButton, setShowInputButton] = useState(false);
   const [validation, setValidation] = useState("");
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setDatabase(JSON.parse(localStorage.getItem("database")));
+    }
+  }, []);
   async function AddConsulta(symbolId) {
     await axios
       .get(
@@ -85,6 +91,7 @@ function List(props) {
           setDatabase([...Database, response.data.Value]);
           setShowInputButton(false);
           setValidation("");
+          localStorage.setItem("database", JSON.stringify([...Database, response.data.Value]));
         } else {
           setValidation("Codigo invalido, tente novamente");
         }
@@ -97,6 +104,7 @@ function List(props) {
     let array = [...Database];
     array.splice(id, 1);
     setDatabase(array);
+    localStorage.setItem("database", JSON.stringify(array));
   }
 
   return (

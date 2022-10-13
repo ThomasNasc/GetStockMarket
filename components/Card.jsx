@@ -19,13 +19,10 @@ const Card_container = styled.div`
     background: #ffffff;
     border-radius: 16px;
     :hover {
-      transition: 1s;
-      /* From https://css.glass */
-      background: rgba(255, 255, 255, 0.514);
+      transition: 0.5s;
       border-radius: 16px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      backdrop-filter: blur(12.1px);
-      -webkit-backdrop-filter: blur(12.1px);
+      box-shadow: 0 4px 30px rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
     }
     .close-Button {
       height: 30px;
@@ -146,7 +143,6 @@ const Card_container = styled.div`
           }
         }
         tr {
-          /* From https://css.glass */
           background: rgba(255, 255, 255, 0.23);
           border-radius: 16px;
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

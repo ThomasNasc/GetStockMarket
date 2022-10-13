@@ -17,8 +17,7 @@ const ContainerHeader = styled.div`
   margin-right: auto;
   padding-bottom: 20px;
   padding-top: 20px;
-  /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.233);
   box-shadow: 0 4px 30px rgba(230, 228, 228, 0.1);
   backdrop-filter: blur(11px);
   -webkit-backdrop-filter: blur(11px);

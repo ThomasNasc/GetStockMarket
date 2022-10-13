@@ -17,9 +17,9 @@ const ContainerAddConsulta = styled.div`
   display: ${(props) => (props.changeDisplay ? "flex" : "none")};
   form {
     width: 350px;
-    height: 250px;
+    height: 300px;
     padding: 15px;
-    background-color: #000000;
+    background-color: #03314b;
     display: flex;
     border-radius: 15px;
     flex-direction: column;
@@ -50,8 +50,8 @@ const ContainerAddConsulta = styled.div`
       }
     }
     .InputSymbol {
-      width: 270px;
-      height: 40px;
+      width: 150px;
+      height: 50px;
       padding: 5px;
       border-radius: 5px;
       font-size: 16px;
