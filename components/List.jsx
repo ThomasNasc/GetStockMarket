@@ -6,7 +6,7 @@ import Input_Button from "./Input_Button";
 
 const List_Cards = styled.div`
   width: 100vw;
- 
+
   padding-top: 120px;
   max-width: 1600px;
   margin-left: auto;
@@ -78,7 +78,11 @@ function List(props) {
   const [validation, setValidation] = useState("");
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setDatabase(JSON.parse(localStorage.getItem("database")));
+      setDatabase(
+        JSON.parse(localStorage.getItem("database")) === null
+          ? []
+          : JSON.parse(localStorage.getItem("database"))
+      );
     }
   }, []);
   async function AddConsulta(symbolId) {
@@ -91,7 +95,10 @@ function List(props) {
           setDatabase([...Database, response.data.Value]);
           setShowInputButton(false);
           setValidation("");
-          localStorage.setItem("database", JSON.stringify([...Database, response.data.Value]));
+          localStorage.setItem(
+            "database",
+            JSON.stringify([...Database, response.data.Value])
+          );
         } else {
           setValidation("Codigo invalido, tente novamente");
         }
